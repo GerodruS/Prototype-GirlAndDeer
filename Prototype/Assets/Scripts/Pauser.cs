@@ -3,9 +3,11 @@ using System.Collections;
 
 public class Pauser : MonoBehaviour {
 	private bool paused = false;
+	public bool restart = false;
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		if(Input.GetKeyUp(KeyCode.P))
 		{
 			paused = !paused;
@@ -15,5 +17,11 @@ public class Pauser : MonoBehaviour {
 			Time.timeScale = 0;
 		else
 			Time.timeScale = 1;
+
+		
+		if (restart && Input.GetKeyDown (KeyCode.R))
+		{
+			Application.LoadLevel(Application.loadedLevel);
+		}
 	}
 }

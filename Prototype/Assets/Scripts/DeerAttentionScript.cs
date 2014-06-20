@@ -5,6 +5,7 @@ public class DeerAttentionScript : MonoBehaviour {
 
 	public float distance = 10.0f;
 	public float attentionSpeed = 0.6f;
+	public float attentionForce = 500f;
 	public float worrySpeed = 1.2f;
 
 	private GameObject player;		// Reference to the player's transform.
@@ -62,7 +63,7 @@ public class DeerAttentionScript : MonoBehaviour {
 				Flip();
 			}
 		} else if (2 == worry) {
-			rigidbody2D.AddForce (Vector2.right * 500);
+			rigidbody2D.AddForce (Vector2.right * attentionForce);
 			attention = 0;
 			worry = 0;
 		}

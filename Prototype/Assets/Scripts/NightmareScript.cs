@@ -21,13 +21,24 @@ public class NightmareScript : MonoBehaviour {
 			if (distanceCurrent.magnitude < distance)
 			{
 				image.renderer.enabled = true;
-				frame = 30;
+				frame = 120;
 			}
 		}
-		else if (1 == frame)
+		else if (80 == frame)
 		{
 			--frame;
 			shelter.transform.position = transform.position;
+			Time.timeScale = 0;
+		}
+		else if (2 == frame)
+		{
+			GameObject gameController = GameObject.FindGameObjectWithTag("GameController");
+			Pauser pauser = gameController.GetComponent<Pauser>();
+			pauser.restart = true;
+			
+			GameObject restartGUIText = GameObject.FindGameObjectWithTag("RestartGUIText");
+			GUIText guiText = restartGUIText.GetComponent<GUIText>();
+			guiText.enabled = true;
 		}
 		else
 		{

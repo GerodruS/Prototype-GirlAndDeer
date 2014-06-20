@@ -19,6 +19,8 @@ public class GirlOnDeerController : MonoBehaviour
 
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	private bool grounded = false;			// Whether or not the player is grounded.
+
+	public float delay = 1.0f;
 	
 	
 	void Awake()
@@ -109,32 +111,39 @@ public class GirlOnDeerController : MonoBehaviour
 		}
 		*/
 
-		if (rigidbody2D.velocity.x < maxSpeed)
-			// ... add a force to the player.
-			rigidbody2D.AddForce (Vector2.right * moveForce);
-		
-		// If the player's horizontal velocity is greater than the maxSpeed...
-		if (Mathf.Abs (rigidbody2D.velocity.x) > maxSpeed)
-			// ... set the player's velocity to the maxSpeed in the x axis.
-			rigidbody2D.velocity = new Vector2 (Mathf.Sign (rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
-
-		// If the player should jump...
-		if(jump)
+		if (0 < delay)
 		{
-			anim.SetInteger ("Jump", 10);
-			jumpLagCurrent = jumpLag;
-			// Set the Jump animator trigger parameter.
-			//anim.SetTrigger("Jump");
+			delay -= Time.deltaTime;
+		}
+		else
+		{
+			if (rigidbody2D.velocity.x < maxSpeed)
+				// ... add a force to the player.
+				rigidbody2D.AddForce (Vector2.right * moveForce);
 			
-			// Play a random jump audio clip.
-			//int i = Random.Range(0, jumpClips.Length);
-			//AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
-			
-			// Add a vertical force to the player.
-			rigidbody2D.AddForce(Vector2.up * jumpForce);
-			
-			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
-			jump = false;
+			// If the player's horizontal velocity is greater than the maxSpeed...
+			if (Mathf.Abs (rigidbody2D.velocity.x) > maxSpeed)
+				// ... set the player's velocity to the maxSpeed in the x axis.
+				rigidbody2D.velocity = new Vector2 (Mathf.Sign (rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
+
+			// If the player should jump...
+			if(jump)
+			{
+				anim.SetInteger ("Jump", 10);
+				jumpLagCurrent = jumpLag;
+				// Set the Jump animator trigger parameter.
+				//anim.SetTrigger("Jump");
+				
+				// Play a random jump audio clip.
+				//int i = Random.Range(0, jumpClips.Length);
+				//AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
+				
+				// Add a vertical force to the player.
+				rigidbody2D.AddForce(Vector2.up * jumpForce);
+				
+				// Make sure the player can't jump again until the jump conditions from Update are satisfied.
+				jump = false;
+			}
 		}
 	}
 	
