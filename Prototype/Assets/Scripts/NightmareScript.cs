@@ -36,9 +36,9 @@ public class NightmareScript : MonoBehaviour {
 			Pauser pauser = gameController.GetComponent<Pauser>();
 			pauser.restart = true;
 			
-			GameObject restartGUIText = GameObject.FindGameObjectWithTag("RestartGUIText");
-			GUIText guiText = restartGUIText.GetComponent<GUIText>();
-			guiText.enabled = true;
+			GameObject restartGUIText = GameObject.FindGameObjectWithTag("HelpGUIText");
+			MessageShowScript messageShowScript = restartGUIText.GetComponent<MessageShowScript>();
+			messageShowScript.SetString("'R' for Repeat");
 		}
 		else
 		{

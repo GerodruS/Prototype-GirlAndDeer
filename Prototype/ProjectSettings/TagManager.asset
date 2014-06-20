@@ -12,7 +12,7 @@ TagManager:
   - BombPickup
   - ExplosionFX
   - HealthBar
-  - RestartGUIText
+  - HelpGUIText
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

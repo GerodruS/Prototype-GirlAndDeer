@@ -36,3 +36,5 @@ Icon
 .Trashes
 
 Prototype/Library/*
+Prototype/Builds/*
+Prototype/Temp/*
